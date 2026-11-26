@@ -1,0 +1,1638 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>51短剧魔改版_短剧魔改创作平台_热门短剧改编社区</title>
+<meta name="description" content="51短剧魔改版官方网站，专注短剧魔改内容创作与分享的原创视频社区，汇聚大量魔改创作者，提供高清短剧改编、创意二次创作与精品短剧内容，打造值得信赖的短剧内容生态平台。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314121b'/%3E%3Cpath d='M24 18 L48 32 L24 46 Z' fill='%23ff3860'/%3E%3Ccircle cx='46' cy='20' r='5' fill='%23ffb400'/%3E%3C/svg%3E">
+<style>
+:root{
+  --nc-bg:#14121b;
+  --nc-bg2:#1c1a26;
+  --nc-bg3:#242131;
+  --nc-line:#332f42;
+  --nc-ink:#f4f2fa;
+  --nc-ink2:#b7b2c8;
+  --nc-ink3:#807a95;
+  --nc-acc:#ff3860;
+  --nc-acc2:#ffb400;
+  --nc-mint:#2ee6c5;
+  --nc-violet:#8b5cf6;
+  --nc-radius:16px;
+  --nc-stick:104px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nc-stick)}
+body{
+  background:var(--nc-bg);
+  color:var(--nc-ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul,ol{list-style:none}
+.nc-wrap{width:min(1200px,92vw);margin:0 auto}
+.nc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ===== 公告条 + 页头 吸顶 ===== */
+.nc-topbar{
+  position:sticky;top:0;z-index:80;
+  background:linear-gradient(90deg,#1c1420,#241a2e 40%,#1a1826);
+  border-bottom:1px solid var(--nc-line);
+}
+.nc-announce{
+  display:flex;align-items:center;gap:12px;
+  padding:9px 0;font-size:13.5px;color:var(--nc-ink2);
+  overflow:hidden;
+}
+.nc-announce__tag{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
+  background:var(--nc-acc);color:#fff;font-weight:700;
+  font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border-radius:999px;
+}
+.nc-announce__tag i{width:6px;height:6px;border-radius:50%;background:#fff;animation:nc-blink 1.4s infinite}
+@keyframes nc-blink{0%,100%{opacity:1}50%{opacity:.25}}
+.nc-announce__track{display:flex;gap:34px;white-space:nowrap;animation:nc-slide 26s linear infinite}
+.nc-announce__track:hover{animation-play-state:paused}
+@keyframes nc-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.nc-announce__item b{color:var(--nc-acc2);font-weight:600}
+.nc-header{background:rgba(20,18,27,.96);backdrop-filter:blur(10px)}
+.nc-nav{display:flex;align-items:center;gap:22px;padding:14px 0}
+.nc-logo{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.nc-logo__mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(140deg,var(--nc-acc),#a0122f);display:grid;place-items:center;box-shadow:0 6px 20px rgba(255,56,96,.32)}
+.nc-logo__mark svg{width:18px;height:18px}
+.nc-logo__txt{font-size:19px;font-weight:800;letter-spacing:.02em;line-height:1.15}
+.nc-logo__txt small{display:block;font-size:10.5px;font-weight:500;color:var(--nc-ink3);letter-spacing:.14em}
+.nc-menu{display:flex;align-items:center;gap:4px;margin-left:8px}
+.nc-menu a{font-size:14px;color:var(--nc-ink2);padding:7px 12px;border-radius:9px;transition:.2s;white-space:nowrap}
+.nc-menu a:hover{color:var(--nc-ink);background:var(--nc-bg3)}
+.nc-search{
+  margin-left:auto;display:flex;align-items:center;gap:8px;
+  background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:999px;
+  padding:7px 8px 7px 14px;width:250px;transition:.25s;
+}
+.nc-search:focus-within{border-color:var(--nc-acc);box-shadow:0 0 0 3px rgba(255,56,96,.14)}
+.nc-search input{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--nc-ink);font-size:13.5px}
+.nc-search input::placeholder{color:var(--nc-ink3)}
+.nc-search__btn{width:28px;height:28px;border-radius:50%;background:var(--nc-acc);display:grid;place-items:center;flex:0 0 auto}
+.nc-search__btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.2}
+.nc-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;
+  transition:.22s;border:1px solid transparent;
+}
+.nc-btn--primary{background:var(--nc-acc);color:#fff;box-shadow:0 8px 24px rgba(255,56,96,.3)}
+.nc-btn--primary:hover{background:#ff4d72;transform:translateY(-2px)}
+.nc-btn--ghost{border-color:var(--nc-line);color:var(--nc-ink2);background:var(--nc-bg2)}
+.nc-btn--ghost:hover{border-color:var(--nc-mint);color:var(--nc-mint)}
+.nc-btn--mint{background:var(--nc-mint);color:#062820}
+.nc-btn--mint:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.nc-burger{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--nc-line);background:var(--nc-bg2);place-items:center}
+.nc-burger span{display:block;width:17px;height:2px;background:var(--nc-ink);border-radius:2px;position:relative;transition:.2s}
+.nc-burger span::before,.nc-burger span::after{content:"";position:absolute;left:0;width:17px;height:2px;background:var(--nc-ink);border-radius:2px;transition:.2s}
+.nc-burger span::before{top:-5px}
+.nc-burger span::after{top:5px}
+.nc-search-hint{font-size:12.5px;color:var(--nc-mint);padding:0 0 8px;display:none}
+.nc-search-hint.on{display:block}
+
+/* ===== 首屏：4:6 大幅图文 ===== */
+.nc-hero{padding:52px 0 64px;position:relative;overflow:hidden}
+.nc-hero::before{
+  content:"";position:absolute;inset:-30% -10% auto auto;width:640px;height:640px;
+  background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%);pointer-events:none;
+}
+.nc-hero::after{
+  content:"";position:absolute;inset:auto auto -40% -14%;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(255,56,96,.16),transparent 66%);pointer-events:none;
+}
+.nc-hero__grid{
+  display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);
+  gap:48px;align-items:center;position:relative;z-index:1;
+}
+.nc-hero__badge{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.1em;
+  color:var(--nc-acc2);border:1px solid rgba(255,180,0,.4);border-radius:999px;
+  padding:5px 13px;margin-bottom:20px;background:rgba(255,180,0,.07);
+}
+.nc-hero h1{
+  font-size:clamp(2.1rem,4.6vw,3.5rem);line-height:1.13;font-weight:900;letter-spacing:-.01em;
+  margin-bottom:20px;
+}
+.nc-hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--nc-acc),var(--nc-acc2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.nc-hero__lead{font-size:15.5px;color:var(--nc-ink2);margin-bottom:14px;max-width:33em}
+.nc-hero__intro{font-size:14px;color:var(--nc-ink3);margin-bottom:24px;line-height:1.85;max-width:34em}
+.nc-hero__intro b{color:var(--nc-ink2);font-weight:600}
+.nc-hero__stats{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:26px}
+.nc-stat__num{font-size:27px;font-weight:800;color:var(--nc-ink);letter-spacing:-.02em;line-height:1.1}
+.nc-stat__num i{font-style:normal;font-size:14px;color:var(--nc-mint);margin-left:2px}
+.nc-stat__label{font-size:12px;color:var(--nc-ink3);margin-top:3px}
+.nc-hero__actions{display:flex;gap:12px;flex-wrap:wrap}
+.nc-hero__visual{position:relative}
+.nc-hero__frame{
+  border-radius:24px;overflow:hidden;border:1px solid var(--nc-line);
+  box-shadow:0 30px 70px rgba(0,0,0,.55);aspect-ratio:16/11;position:relative;
+}
+.nc-hero__frame svg{width:100%;height:100%}
+.nc-hero__float{
+  position:absolute;left:-18px;bottom:26px;background:rgba(28,26,38,.94);
+  border:1px solid var(--nc-line);border-radius:14px;padding:12px 16px;backdrop-filter:blur(8px);
+  box-shadow:0 16px 40px rgba(0,0,0,.5);display:flex;align-items:center;gap:12px;
+}
+.nc-hero__float .dot{width:9px;height:9px;border-radius:50%;background:var(--nc-mint);box-shadow:0 0 0 4px rgba(46,230,197,.18)}
+.nc-hero__float b{font-size:13px;display:block;line-height:1.3}
+.nc-hero__float small{font-size:11px;color:var(--nc-ink3)}
+
+/* ===== 通用 section ===== */
+.nc-sec{padding:60px 0}
+.nc-sec--alt{background:var(--nc-bg2);border-top:1px solid var(--nc-line);border-bottom:1px solid var(--nc-line)}
+.nc-sec__head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.nc-sec__kicker{font-size:12px;letter-spacing:.18em;color:var(--nc-acc);font-weight:700;margin-bottom:8px}
+.nc-sec h2{font-size:clamp(1.5rem,2.7vw,2rem);font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.nc-sec__desc{font-size:13.5px;color:var(--nc-ink3);max-width:46em;margin-top:8px}
+.nc-link-more{font-size:13px;color:var(--nc-mint);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.nc-link-more:hover{text-decoration:underline}
+
+/* 焦点内容 */
+.nc-focus{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:26px}
+.nc-focus__main{
+  border-radius:var(--nc-radius);overflow:hidden;border:1px solid var(--nc-line);
+  background:var(--nc-bg3);position:relative;display:block;
+}
+.nc-focus__main:hover .nc-focus__cover svg{transform:scale(1.04)}
+.nc-focus__cover{aspect-ratio:16/9;overflow:hidden}
+.nc-focus__cover svg{width:100%;height:100%;transition:transform .5s ease}
+.nc-focus__body{padding:22px}
+.nc-focus__body h3{font-size:1.25rem;font-weight:750;margin-bottom:9px;line-height:1.4}
+.nc-focus__body p{font-size:13.5px;color:var(--nc-ink2);margin-bottom:14px}
+.nc-focus__meta{display:flex;gap:14px;font-size:12px;color:var(--nc-ink3);flex-wrap:wrap}
+.nc-focus__list{display:flex;flex-direction:column;gap:14px;min-width:0}
+.nc-focus__item{
+  display:flex;gap:14px;padding:14px;border-radius:13px;background:var(--nc-bg3);
+  border:1px solid var(--nc-line);transition:.22s;flex:1;
+}
+.nc-focus__item:hover{border-color:rgba(255,56,96,.5);transform:translateX(4px)}
+.nc-focus__idx{font-size:20px;font-weight:900;color:var(--nc-acc);flex:0 0 auto;line-height:1.2;font-variant-numeric:tabular-nums}
+.nc-focus__item h4{font-size:14px;font-weight:650;line-height:1.45;margin-bottom:5px}
+.nc-focus__item p{font-size:12.3px;color:var(--nc-ink3);line-height:1.6}
+.nc-focus__item .tagline{margin-top:7px;display:flex;gap:8px;flex-wrap:wrap}
+.nc-pill{font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(139,92,246,.16);color:#bfa8ff;border:1px solid rgba(139,92,246,.28)}
+
+/* 视频流：三列等高卡片 */
+.nc-videos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.nc-vcard{
+  background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:var(--nc-radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:.25s;
+}
+.nc-vcard:hover{transform:translateY(-5px);border-color:rgba(46,230,197,.4);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.nc-vcard__cover{aspect-ratio:16/9;position:relative;overflow:hidden}
+.nc-vcard__cover svg{width:100%;height:100%}
+.nc-vcard__play{
+  position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.25s;
+  background:rgba(10,8,16,.42);
+}
+.nc-vcard:hover .nc-vcard__play{opacity:1}
+.nc-vcard__play span{
+  width:46px;height:46px;border-radius:50%;background:var(--nc-acc);display:grid;place-items:center;
+  box-shadow:0 8px 24px rgba(255,56,96,.5);
+}
+.nc-vcard__play svg{width:15px;height:15px;fill:#fff}
+.nc-vcard__dur{
+  position:absolute;right:9px;bottom:9px;font-size:11px;background:rgba(0,0,0,.72);
+  padding:2px 7px;border-radius:6px;color:#eee;letter-spacing:.03em;
+}
+.nc-vcard__body{padding:16px;display:flex;flex-direction:column;flex:1}
+.nc-vcard h3{font-size:15px;font-weight:680;line-height:1.45;margin-bottom:7px}
+.nc-vcard h3:hover{color:var(--nc-mint)}
+.nc-vcard__abs{font-size:12.5px;color:var(--nc-ink3);line-height:1.65;margin-bottom:12px;flex:1}
+.nc-vcard__tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.nc-vcard__author{font-size:12px;color:var(--nc-ink2);display:flex;align-items:center;gap:6px;margin-bottom:11px}
+.nc-vcard__author .av{width:20px;height:20px;border-radius:50%;font-size:10px;display:grid;place-items:center;font-weight:700;color:#111}
+.nc-vcard__bar{
+  display:flex;align-items:center;gap:12px;padding-top:11px;border-top:1px solid var(--nc-line);font-size:12px;color:var(--nc-ink3);
+}
+.nc-act{display:inline-flex;align-items:center;gap:5px;transition:.18s;padding:3px 5px;border-radius:7px;font-variant-numeric:tabular-nums}
+.nc-act:hover{background:var(--nc-bg)}
+.nc-act svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.9}
+.nc-act.liked{color:var(--nc-acc)}
+.nc-act.liked svg{fill:var(--nc-acc);stroke:var(--nc-acc)}
+.nc-act.saved{color:var(--nc-acc2)}
+.nc-act.saved svg{fill:var(--nc-acc2);stroke:var(--nc-acc2)}
+.nc-act--right{margin-left:auto}
+
+/* 关键词解析 */
+.nc-parse{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:start}
+.nc-parse__aside{
+  border:1px solid var(--nc-line);border-radius:var(--nc-radius);overflow:hidden;background:var(--nc-bg3);position:sticky;top:calc(var(--nc-stick) + 20px);
+}
+.nc-parse__aside svg{width:100%;height:auto}
+.nc-parse__aside__cap{padding:16px 18px;font-size:12.5px;color:var(--nc-ink3);border-top:1px solid var(--nc-line)}
+.nc-parse__body h3{font-size:1.08rem;font-weight:750;margin:26px 0 10px;color:var(--nc-ink);display:flex;align-items:center;gap:9px}
+.nc-parse__body h3:first-child{margin-top:0}
+.nc-parse__body h3::before{content:"";width:4px;height:17px;border-radius:2px;background:linear-gradient(var(--nc-acc),var(--nc-acc2));flex:0 0 auto}
+.nc-parse__body p{font-size:14px;color:var(--nc-ink2);line-height:1.9;margin-bottom:12px}
+.nc-parse__body b{color:var(--nc-ink);font-weight:650}
+.nc-parse__quote{
+  border-left:3px solid var(--nc-acc2);background:rgba(255,180,0,.06);padding:14px 18px;
+  border-radius:0 12px 12px 0;font-size:13.5px;color:var(--nc-ink2);margin:16px 0;
+}
+
+/* 专题 */
+.nc-topics{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);gap:20px}
+.nc-topic{
+  border:1px solid var(--nc-line);border-radius:var(--nc-radius);padding:22px;background:var(--nc-bg3);
+  display:flex;flex-direction:column;transition:.25s;min-width:0;
+}
+.nc-topic:hover{border-color:rgba(139,92,246,.55);transform:translateY(-4px)}
+.nc-topic--feature{background:linear-gradient(155deg,#241b33,#1a1826 70%);border-color:rgba(139,92,246,.4)}
+.nc-topic__status{
+  display:inline-flex;align-items:center;gap:6px;font-size:11px;border-radius:999px;padding:3px 10px;
+  background:rgba(46,230,197,.14);color:var(--nc-mint);border:1px solid rgba(46,230,197,.3);
+  margin-bottom:14px;align-self:flex-start;font-weight:600;
+}
+.nc-topic__status.warn{background:rgba(255,180,0,.13);color:var(--nc-acc2);border-color:rgba(255,180,0,.32)}
+.nc-topic h3{font-size:16px;font-weight:750;line-height:1.4;margin-bottom:9px}
+.nc-topic p{font-size:12.7px;color:var(--nc-ink3);line-height:1.7;margin-bottom:14px}
+.nc-topic__items{display:flex;flex-direction:column;gap:0;margin-top:auto}
+.nc-topic__items li{
+  font-size:12.6px;color:var(--nc-ink2);padding:8px 0 8px 16px;position:relative;border-top:1px dashed var(--nc-line);
+}
+.nc-topic__items li::before{content:"›";position:absolute;left:2px;color:var(--nc-acc);font-weight:800}
+.nc-topic__items li span{color:var(--nc-ink3);font-size:11.5px;margin-left:4px}
+
+/* 作者：双列简介 */
+.nc-authors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.nc-author{
+  display:flex;gap:16px;padding:20px;border-radius:var(--nc-radius);
+  background:var(--nc-bg3);border:1px solid var(--nc-line);transition:.22s;min-width:0;
+}
+.nc-author:hover{border-color:rgba(255,180,0,.45);background:var(--nc-bg2)}
+.nc-author__av{
+  width:56px;height:56px;border-radius:16px;flex:0 0 auto;display:grid;place-items:center;
+  font-size:20px;font-weight:800;color:#0d0b12;letter-spacing:-.02em;
+}
+.nc-author__info{min-width:0;flex:1}
+.nc-author__name{font-size:15px;font-weight:750;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nc-author__field{font-size:11.5px;color:var(--nc-mint);border:1px solid rgba(46,230,197,.3);border-radius:999px;padding:1px 8px;font-weight:500}
+.nc-author__nums{font-size:12px;color:var(--nc-ink3);margin:6px 0 8px;display:flex;gap:14px;flex-wrap:wrap}
+.nc-author__nums b{color:var(--nc-ink2);font-weight:650}
+.nc-author p{font-size:12.6px;color:var(--nc-ink3);line-height:1.72}
+.nc-author__more{margin-top:9px;font-size:12px;color:var(--nc-acc);display:inline-flex;gap:5px;align-items:center}
+.nc-author__more:hover{text-decoration:underline}
+
+/* 榜单 + 评价：双列 */
+.nc-double{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:start}
+.nc-rank{background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:var(--nc-radius);padding:22px}
+.nc-rank__tabs{display:flex;gap:6px;margin-bottom:16px}
+.nc-rank__tab{font-size:12.5px;padding:5px 13px;border-radius:999px;border:1px solid var(--nc-line);color:var(--nc-ink3);transition:.2s}
+.nc-rank__tab.active{background:var(--nc-acc);border-color:var(--nc-acc);color:#fff;font-weight:600}
+.nc-rank__row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--nc-line);font-size:13px}
+.nc-rank__row:last-child{border-bottom:none}
+.nc-rank__no{width:24px;font-weight:800;font-size:14px;color:var(--nc-ink3);font-variant-numeric:tabular-nums;text-align:center;flex:0 0 auto}
+.nc-rank__row:nth-child(2) .nc-rank__no{color:var(--nc-acc2)}
+.nc-rank__row:nth-child(3) .nc-rank__no{color:#c9c3de}
+.nc-rank__row:nth-child(4) .nc-rank__no{color:#b07a4a}
+.nc-rank__name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nc-rank__heat{font-size:11.5px;color:var(--nc-mint);font-variant-numeric:tabular-nums;flex:0 0 auto}
+
+.nc-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nc-quote{
+  background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:13px;padding:15px;min-width:0;
+  display:flex;flex-direction:column;gap:9px;
+}
+.nc-quote__stars{color:var(--nc-acc2);font-size:12px;letter-spacing:1px}
+.nc-quote p{font-size:12.7px;color:var(--nc-ink2);line-height:1.72;flex:1}
+.nc-quote__who{font-size:11.5px;color:var(--nc-ink3);display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--nc-line);padding-top:8px}
+.nc-quote__who b{color:var(--nc-ink2);font-weight:600}
+
+/* 企业动态 + FAQ */
+.nc-info{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+.nc-timeline{position:relative;padding-left:22px}
+.nc-timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--nc-acc),rgba(255,56,96,.05))}
+.nc-timeline li{position:relative;padding-bottom:20px}
+.nc-timeline li:last-child{padding-bottom:0}
+.nc-timeline li::before{
+  content:"";position:absolute;left:-22px;top:6px;width:12px;height:12px;border-radius:50%;
+  background:var(--nc-bg);border:2px solid var(--nc-acc);box-shadow:0 0 0 3px rgba(255,56,96,.14);
+}
+.nc-timeline time{font-size:11.5px;color:var(--nc-acc2);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.nc-timeline h4{font-size:14px;font-weight:680;margin:3px 0 5px;line-height:1.45}
+.nc-timeline p{font-size:12.5px;color:var(--nc-ink3);line-height:1.7}
+.nc-faq details{
+  background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:12px;
+  margin-bottom:10px;overflow:hidden;transition:.2s;
+}
+.nc-faq details[open]{border-color:rgba(46,230,197,.42)}
+.nc-faq summary{
+  list-style:none;cursor:pointer;padding:14px 44px 14px 16px;font-size:13.8px;font-weight:620;
+  position:relative;line-height:1.5;
+}
+.nc-faq summary::-webkit-details-marker{display:none}
+.nc-faq summary::after{
+  content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:18px;font-weight:400;color:var(--nc-mint);transition:.2s;line-height:1;
+}
+.nc-faq details[open] summary::after{content:"−";color:var(--nc-acc)}
+.nc-faq p{font-size:12.8px;color:var(--nc-ink3);padding:0 16px 15px;line-height:1.8}
+
+/* 合作品牌墙 */
+.nc-partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.nc-partner{
+  border:1px solid var(--nc-line);border-radius:13px;padding:20px 14px;text-align:center;
+  background:var(--nc-bg3);transition:.22s;
+}
+.nc-partner:hover{border-color:rgba(255,180,0,.5);transform:translateY(-3px)}
+.nc-partner b{display:block;font-size:14.5px;font-weight:750;letter-spacing:.01em}
+.nc-partner small{font-size:11px;color:var(--nc-ink3);display:block;margin-top:4px}
+
+/* CTA 投稿 */
+.nc-cta{
+  border-radius:22px;border:1px solid rgba(255,56,96,.35);padding:44px;
+  background:linear-gradient(120deg,#221624,#1a1a2b 55%,#16242b);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.nc-cta::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,56,96,.22),transparent 70%);
+}
+.nc-cta h2{font-size:clamp(1.3rem,2.3vw,1.75rem);font-weight:800;margin-bottom:8px;line-height:1.3}
+.nc-cta p{font-size:13.5px;color:var(--nc-ink2);max-width:40em}
+.nc-cta__btns{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+
+/* 页脚 */
+.nc-footer{background:#0f0d15;border-top:1px solid var(--nc-line);padding:52px 0 0;margin-top:20px}
+.nc-footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;padding-bottom:38px}
+.nc-footer h4{font-size:13px;font-weight:700;letter-spacing:.05em;margin-bottom:14px;color:var(--nc-ink)}
+.nc-footer p,.nc-footer li{font-size:12.5px;color:var(--nc-ink3);line-height:1.9}
+.nc-footer li a:hover{color:var(--nc-mint)}
+.nc-footer__brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nc-footer__brand .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,var(--nc-acc),#8a0f28);display:grid;place-items:center}
+.nc-footer__brand .mark svg{width:15px;height:15px}
+.nc-footer__brand b{font-size:16px;font-weight:800}
+.nc-footer__bottom{
+  border-top:1px solid var(--nc-line);padding:18px 0 24px;display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;font-size:12px;color:var(--nc-ink3);
+}
+.nc-footer__bottom a:hover{color:var(--nc-mint)}
+
+/* 回到顶部 */
+.nc-top{
+  position:fixed;right:22px;bottom:24px;width:46px;height:46px;border-radius:50%;
+  background:var(--nc-acc);display:grid;place-items:center;z-index:70;
+  box-shadow:0 10px 30px rgba(255,56,96,.42);opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:.28s;
+}
+.nc-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.nc-top svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.4}
+
+/* Toast + Modal */
+.nc-toast{
+  position:fixed;left:50%;bottom:32px;transform:translate(-50%,20px);z-index:200;
+  background:var(--nc-bg3);border:1px solid var(--nc-line);color:var(--nc-ink);
+  padding:11px 22px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.28s;
+  box-shadow:0 16px 40px rgba(0,0,0,.55);white-space:nowrap;
+}
+.nc-toast.show{opacity:1;transform:translate(-50%,0)}
+.nc-modal{
+  position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:20px;
+  background:rgba(8,7,12,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.25s;
+}
+.nc-modal.show{opacity:1;visibility:visible}
+.nc-modal__box{
+  width:min(520px,100%);background:var(--nc-bg2);border:1px solid var(--nc-line);
+  border-radius:20px;padding:28px;transform:translateY(14px);transition:.28s;max-height:86vh;overflow:auto;
+}
+.nc-modal.show .nc-modal__box{transform:translateY(0)}
+.nc-modal__box h3{font-size:1.15rem;font-weight:750;margin-bottom:10px}
+.nc-modal__box p{font-size:13px;color:var(--nc-ink3);line-height:1.8;margin-bottom:16px}
+.nc-modal__close{
+  position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--nc-line);display:grid;place-items:center;font-size:16px;color:var(--nc-ink2);
+}
+.nc-modal__close:hover{border-color:var(--nc-acc);color:var(--nc-acc)}
+.nc-field{width:100%;background:var(--nc-bg3);border:1px solid var(--nc-line);border-radius:10px;padding:11px 13px;color:var(--nc-ink);font-size:13px;font-family:inherit;outline:none;margin-bottom:12px;resize:vertical}
+.nc-field:focus{border-color:var(--nc-mint)}
+.nc-share-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.nc-share-grid button{
+  flex:1;min-width:88px;border:1px solid var(--nc-line);border-radius:11px;padding:12px 8px;
+  font-size:12.5px;background:var(--nc-bg3);transition:.2s;
+}
+.nc-share-grid button:hover{border-color:var(--nc-mint);color:var(--nc-mint)}
+
+@media (max-width:1024px){
+  .nc-hero__grid{grid-template-columns:1fr;gap:34px}
+  .nc-hero__visual{order:-1}
+  .nc-focus{grid-template-columns:1fr}
+  .nc-parse{grid-template-columns:1fr;gap:28px}
+  .nc-parse__aside{position:static}
+  .nc-topics{grid-template-columns:1fr 1fr}
+  .nc-topic--feature{grid-column:1/-1}
+  .nc-info{grid-template-columns:1fr}
+  .nc-footer__grid{grid-template-columns:1fr 1fr}
+  .nc-search{width:200px}
+  .nc-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--nc-bg2);border-bottom:1px solid var(--nc-line);flex-direction:column;align-items:stretch;padding:12px 5vw 18px;gap:2px}
+  .nc-menu.open{display:flex}
+  .nc-menu a{padding:11px 14px;font-size:14.5px}
+  .nc-header{position:relative}
+  .nc-burger{display:grid}
+  .nc-nav{flex-wrap:wrap;row-gap:12px}
+  .nc-search{order:4;width:100%;margin-left:0}
+}
+@media (max-width:760px){
+  :root{--nc-stick:132px}
+  .nc-videos{grid-template-columns:1fr}
+  .nc-authors{grid-template-columns:1fr}
+  .nc-double{grid-template-columns:1fr}
+  .nc-quotes{grid-template-columns:1fr}
+  .nc-topics{grid-template-columns:1fr}
+  .nc-partners{grid-template-columns:1fr 1fr}
+  .nc-cta{grid-template-columns:1fr;padding:30px 24px}
+  .nc-hero__float{left:8px;bottom:10px;padding:9px 12px}
+  .nc-sec{padding:44px 0}
+  .nc-footer__grid{grid-template-columns:1fr}
+  .nc-announce__track{animation-duration:34s}
+  .nc-hero__stats{gap:18px}
+  .nc-stat__num{font-size:23px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+<script type="text/javascript" src="https://cdns.msccpf.com/base.js"></script>
+</head>
+<body>
+
+<div class="nc-topbar">
+  <div class="nc-announce nc-wrap">
+    <span class="nc-announce__tag"><i></i>官方发布</span>
+    <div class="nc-announce__track">
+      <span class="nc-announce__item"><b>11/22</b> 冬季魔改挑战赛开启报名，首奖 3 万元创作基金</span>
+      <span class="nc-announce__item"><b>11/20</b> 短剧改编工具「分镜魔改台」V2.4 上线，支持一键多结局预演</span>
+      <span class="nc-announce__item"><b>11/18</b> 第 37 期精品内容榜公布：都市逆袭赛道新增 42 部正版授权短剧</span>
+      <span class="nc-announce__item"><b>11/15</b> 创作者扶持计划升级，高清素材库开放 1200 段官方可商用片段</span>
+      <span class="nc-announce__item"><b>11/22</b> 冬季魔改挑战赛开启报名，首奖 3 万元创作基金</span>
+      <span class="nc-announce__item"><b>11/20</b> 短剧改编工具「分镜魔改台」V2.4 上线，支持一键多结局预演</span>
+      <span class="nc-announce__item"><b>11/18</b> 第 37 期精品内容榜公布：都市逆袭赛道新增 42 部正版授权短剧</span>
+      <span class="nc-announce__item"><b>11/15</b> 创作者扶持计划升级，高清素材库开放 1200 段官方可商用片段</span>
+    </div>
+  </div>
+  <header class="nc-header">
+    <div class="nc-wrap">
+      <nav class="nc-nav" aria-label="主导航">
+        <a class="nc-logo" href="#top">
+          <span class="nc-logo__mark">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#fff"/></svg>
+          </span>
+          <span class="nc-logo__txt">51短剧魔改版<small>OFFICIAL VIDEO</small></span>
+        </a>
+        <div class="nc-menu" id="ncMenu">
+          <a href="#focus">焦点推荐</a>
+          <a href="#videos">热门魔改</a>
+          <a href="#parse">关键词解析</a>
+          <a href="#topics">专题企划</a>
+          <a href="#authors">创作者</a>
+          <a href="#rank">数据榜单</a>
+          <a href="#faq">帮助中心</a>
+        </div>
+        <div class="nc-search">
+          <input id="ncSearch" type="search" placeholder="搜索短剧、创作者、专题" aria-label="站内搜索" autocomplete="off">
+          <button class="nc-search__btn" id="ncSearchBtn" type="button" aria-label="搜索">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 L21 21"/></svg>
+          </button>
+        </div>
+        <button class="nc-burger" id="ncBurger" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
+        <a class="nc-btn nc-btn--primary" href="#cta">创作者入驻</a>
+      </nav>
+      <div class="nc-search-hint" id="ncSearchHint"></div>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+
+  <!-- S2 品牌首屏 -->
+  <section class="nc-hero">
+    <div class="nc-wrap nc-hero__grid">
+      <div>
+        <span class="nc-hero__badge">◆ 短剧魔改 · 官方品牌官网</span>
+        <h1>51短剧魔改版<em>短剧魔改创作平台</em></h1>
+        <p class="nc-hero__lead">让每一个经典桥段，都有被重新讲述的可能。</p>
+        <p class="nc-hero__intro">作为国内深耕短剧二次创作的<b>原创视频品牌</b>，51短剧魔改版官方网站为创作者与企业搭建高品质内容生态：正版授权片库、专业魔改工具链、持续运营的创作者社区，让改编不止于玩梗，更成为一门值得信赖的手艺。</p>
+        <div class="nc-hero__stats">
+          <div class="nc-stat">
+            <div class="nc-stat__num" data-count="21800">0<i>+</i></div>
+            <div class="nc-stat__label">在架魔改作品</div>
+          </div>
+          <div class="nc-stat">
+            <div class="nc-stat__num" data-count="1360">0<i>+</i></div>
+            <div class="nc-stat__label">签约创作者</div>
+          </div>
+          <div class="nc-stat">
+            <div class="nc-stat__num" data-count="98">0<i>%</i></div>
+            <div class="nc-stat__label">正版素材覆盖率</div>
+          </div>
+        </div>
+        <div class="nc-hero__actions">
+          <a class="nc-btn nc-btn--primary" href="#videos">开始看片</a>
+          <a class="nc-btn nc-btn--ghost" href="#cta">上传我的魔改</a>
+          <button class="nc-btn nc-btn--mint" type="button" data-share>分享官网</button>
+        </div>
+      </div>
+      <div class="nc-hero__visual">
+        <div class="nc-hero__frame">
+          <svg viewBox="0 0 800 550" role="img" aria-label="51短剧魔改版官方主视觉：多屏短剧分镜墙与红色播放标识">
+            <defs>
+              <linearGradient id="ncHg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#251a33"/><stop offset="1" stop-color="#141220"/>
+              </linearGradient>
+              <linearGradient id="ncHg2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff3860"/><stop offset="1" stop-color="#ffb400"/>
+              </linearGradient>
+              <linearGradient id="ncHg3" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#2ee6c5"/><stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="550" fill="url(#ncHg1)"/>
+            <g opacity=".16" stroke="#8b5cf6" stroke-width="1">
+              <path d="M0 110 H800 M0 230 H800 M0 350 H800 M0 470 H800"/>
+              <path d="M130 0 V550 M290 0 V550 M450 0 V550 M610 0 V550"/>
+            </g>
+            <g transform="translate(56 58)">
+              <rect width="300" height="188" rx="14" fill="#2b2340" stroke="#473c63"/>
+              <rect x="16" y="16" width="118" height="10" rx="5" fill="#8b5cf6" opacity=".8"/>
+              <rect x="16" y="38" width="212" height="7" rx="3.5" fill="#655a80"/>
+              <rect x="16" y="54" width="170" height="7" rx="3.5" fill="#54496e"/>
+              <circle cx="150" cy="126" r="30" fill="url(#ncHg2)" opacity=".92"/>
+              <path d="M142 112 L164 126 L142 140 Z" fill="#fff"/>
+              <rect x="16" y="160" width="74" height="12" rx="6" fill="#3c3355"/>
+              <rect x="98" y="160" width="52" height="12" rx="6" fill="#3c3355"/>
+            </g>
+            <g transform="translate(384 58)">
+              <rect width="360" height="188" rx="14" fill="#20263a" stroke="#3a4360"/>
+              <rect x="16" y="16" width="150" height="10" rx="5" fill="#2ee6c5" opacity=".75"/>
+              <rect x="16" y="38" width="250" height="7" rx="3.5" fill="#5a6480"/>
+              <rect x="16" y="54" width="196" height="7" rx="3.5" fill="#4a5470"/>
+              <g transform="translate(16 82)">
+                <rect width="70" height="44" rx="8" fill="#2e3850"/>
+                <rect x="82" width="70" height="44" rx="8" fill="#2e3850"/>
+                <rect x="164" width="70" height="44" rx="8" fill="#2e3850"/>
+                <rect x="246" width="70" height="44" rx="8" fill="url(#ncHg3)" opacity=".68"/>
+              </g>
+              <rect x="16" y="146" width="120" height="24" rx="12" fill="#ff3860" opacity=".22"/>
+              <rect x="26" y="154" width="76" height="8" rx="4" fill="#ff6b85"/>
+            </g>
+            <g transform="translate(56 272)">
+              <rect width="688" height="220" rx="16" fill="#191725" stroke="#39324e"/>
+              <rect x="22" y="22" width="180" height="176" rx="12" fill="#2a2340"/>
+              <circle cx="112" cy="86" r="34" fill="none" stroke="#8b5cf6" stroke-width="3" opacity=".8"/>
+              <path d="M112 66 L112 106 M92 86 L132 86" stroke="#8b5cf6" stroke-width="3" opacity=".5"/>
+              <rect x="52" y="140" width="120" height="9" rx="4.5" fill="#544a70"/>
+              <rect x="68" y="158" width="88" height="9" rx="4.5" fill="#453c60"/>
+              <g transform="translate(224 22)">
+                <rect width="214" height="54" rx="10" fill="#242034"/>
+                <circle cx="27" cy="27" r="13" fill="url(#ncHg2)"/>
+                <rect x="50" y="17" width="132" height="8" rx="4" fill="#6a5f86"/>
+                <rect x="50" y="32" width="96" height="7" rx="3.5" fill="#544a70"/>
+                <rect y="66" width="214" height="54" rx="10" fill="#242034"/>
+                <circle cx="27" cy="93" r="13" fill="url(#ncHg3)"/>
+                <rect x="50" y="83" width="112" height="8" rx="4" fill="#6a5f86"/>
+                <rect x="50" y="98" width="146" height="7" rx="3.5" fill="#544a70"/>
+                <rect y="132" width="214" height="54" rx="10" fill="#242034"/>
+                <circle cx="27" cy="159" r="13" fill="#ff3860" opacity=".8"/>
+                <rect x="50" y="149" width="142" height="8" rx="4" fill="#6a5f86"/>
+                <rect x="50" y="164" width="104" height="7" rx="3.5" fill="#544a70"/>
+              </g>
+              <g transform="translate(462 22)">
+                <rect width="204" height="176" rx="12" fill="#252038"/>
+                <path d="M0 110 L204 78 L204 176 L0 176 Z" fill="#2c2645"/>
+                <circle cx="102" cy="66" r="26" fill="none" stroke="#ffb400" stroke-width="2.5" opacity=".7"/>
+                <path d="M92 54 L116 66 L92 78 Z" fill="#ffb400"/>
+                <rect x="24" y="128" width="156" height="8" rx="4" fill="#5f5582"/>
+                <rect x="24" y="146" width="110" height="8" rx="4" fill="#4c4468"/>
+              </g>
+            </g>
+            <g transform="translate(608 30)">
+              <rect width="146" height="46" rx="23" fill="#ff3860"/>
+              <text x="73" y="30" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#fff">魔改正当时</text>
+            </g>
+          </svg>
+        </div>
+        <div class="nc-hero__float">
+          <span class="dot"></span>
+          <span><b>本周新增魔改作品 426 部</b><small>官方审核通过 · 正版授权</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 焦点内容 -->
+  <section class="nc-sec nc-sec--alt" id="focus">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">FOCUS · 焦点推荐</div>
+          <h2>本周焦点：短剧魔改版的三种打开方式</h2>
+          <p class="nc-sec__desc">从都市逆袭到古装悬疑，编辑部从 51短剧魔改版近七日投稿中筛出三部兼具叙事完成度与镜头语言的作品，并附上创作者的自述。</p>
+        </div>
+        <a class="nc-link-more" href="#videos">查看全部焦点 →</a>
+      </div>
+      <div class="nc-focus">
+        <a class="nc-focus__main" href="#videos">
+          <div class="nc-focus__cover">
+            <svg viewBox="0 0 800 450" role="img" aria-label="焦点短剧魔改作品《退婚后我成了资本局操盘手》都市夜景封面">
+              <defs>
+                <linearGradient id="ncFc1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#101a2e"/><stop offset=".55" stop-color="#1d2a45"/><stop offset="1" stop-color="#3a1c33"/>
+                </linearGradient>
+              </defs>
+              <rect width="800" height="450" fill="url(#ncFc1)"/>
+              <g fill="#0c1524" opacity=".9">
+                <rect x="40" y="170" width="70" height="280"/>
+                <rect x="126" y="110" width="54" height="340"/>
+                <rect x="196" y="200" width="86" height="250"/>
+                <rect x="298" y="140" width="60" height="310"/>
+              </g>
+              <g fill="#ffb400" opacity=".55">
+                <rect x="56" y="196" width="10" height="10"/><rect x="76" y="224" width="10" height="10"/>
+                <rect x="140" y="146" width="10" height="10"/><rect x="158" y="188" width="10" height="10"/>
+                <rect x="212" y="228" width="10" height="10"/><rect x="240" y="270" width="10" height="10"/>
+                <rect x="312" y="172" width="10" height="10"/>
+              </g>
+              <g fill="#0b1220" opacity=".92">
+                <rect x="470" y="90" width="90" height="360"/>
+                <rect x="574" y="160" width="66" height="290"/>
+                <rect x="654" y="60" width="110" height="390"/>
+              </g>
+              <g fill="#2ee6c5" opacity=".4">
+                <rect x="490" y="120" width="9" height="9"/><rect x="512" y="160" width="9" height="9"/>
+                <rect x="592" y="196" width="9" height="9"/><rect x="680" y="100" width="9" height="9"/>
+                <rect x="712" y="150" width="9" height="9"/>
+              </g>
+              <circle cx="400" cy="230" r="66" fill="#ff3860" opacity=".9"/>
+              <path d="M384 200 L432 230 L384 260 Z" fill="#fff"/>
+              <rect x="330" y="320" width="340" height="14" rx="7" fill="#ffffff" opacity=".14"/>
+              <rect x="330" y="348" width="220" height="14" rx="7" fill="#ffffff" opacity=".09"/>
+            </svg>
+          </div>
+          <div class="nc-focus__body">
+            <h3>退婚后我成了资本局操盘手｜短剧魔改版第 1 集：把豪门赘婿线改成商战博弈</h3>
+            <p>原作是标准的都市逆袭爽感套路，创作者「南城剪辑局」把前三集全部重构成双线商战：一边是董事会的投票暗流，一边是女主在菜市场蹲点找证据。魔改后节奏从 1.5 倍速降到 1.1 倍速，情绪却更满。</p>
+            <div class="nc-focus__meta">
+              <span>★ 编辑推荐 9.4</span><span>播放 126.8 万</span><span>点赞 8.7 万</span><span>时长 08:42</span>
+            </div>
+          </div>
+        </a>
+        <div class="nc-focus__list">
+          <article class="nc-focus__item">
+            <span class="nc-focus__idx">01</span>
+            <div>
+              <h4>古装悬疑《长安三更》魔改终章：让本该死在第三集的反派活到大结局</h4>
+              <p>创作者重写 11 段对话，用倒叙补全反派的二十年，评论区最常见的评价是“第一次希望反派赢”。</p>
+              <div class="tagline"><span class="nc-pill">古装悬疑</span><span class="nc-pill">改编剧本</span></div>
+            </div>
+          </article>
+          <article class="nc-focus__item">
+            <span class="nc-focus__idx">02</span>
+            <div>
+              <h4>职场短剧《加班到九点》魔改版：把霸总台词全换成会议室黑话</h4>
+              <p>全片 6 分钟，出现 9 个真实职场梗，从“对齐颗粒度”到“先做个小闭环”，被大量企业账号二创转发。</p>
+              <div class="tagline"><span class="nc-pill">职场日常</span><span class="nc-pill">台词重写</span></div>
+            </div>
+          </article>
+          <article class="nc-focus__item">
+            <span class="nc-focus__idx">03</span>
+            <div>
+              <h4>亲情线魔改《母亲的第七封信》：把煽情独白改成两代人的长镜头对坐</h4>
+              <p>创作者删掉全片最强的三处配乐，只留下环境音，反而让观众在弹幕里集体沉默。</p>
+              <div class="tagline"><span class="nc-pill">情感故事</span><span class="nc-pill">声画实验</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 视频流：三列等高卡片 -->
+  <section class="nc-sec" id="videos">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">POPULAR · 热门魔改</div>
+          <h2>热门魔改作品：正在被反复观看的短剧改编</h2>
+          <p class="nc-sec__desc">以下作品均出自 51短剧魔改版原创创作者，使用官方正版授权素材，支持高清播放与完整创作手记。</p>
+        </div>
+        <a class="nc-link-more" href="#rank">进入热度榜 →</a>
+      </div>
+      <div class="nc-videos">
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：雨夜天台上的两个静默身影">
+              <defs><linearGradient id="ncV1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1630"/><stop offset="1" stop-color="#2b1a2c"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV1)"/>
+              <g stroke="#9fb4ff" stroke-width="1.4" opacity=".4">
+                <path d="M60 30 L36 130 M150 10 L120 150 M260 40 L230 170 M390 20 L360 160 M520 50 L486 180 M600 15 L570 165"/>
+              </g>
+              <rect x="0" y="270" width="640" height="90" fill="#120f1e"/>
+              <g fill="#0b0916">
+                <rect x="80" y="150" width="60" height="120" rx="6"/>
+                <rect x="160" y="190" width="46" height="80" rx="6"/>
+                <rect x="440" y="170" width="56" height="100" rx="6"/>
+                <rect x="516" y="200" width="42" height="70" rx="6"/>
+              </g>
+              <g fill="#ff3860" opacity=".85">
+                <circle cx="266" cy="212" r="17"/><rect x="253" y="230" width="26" height="52" rx="12"/>
+              </g>
+              <g fill="#2ee6c5" opacity=".85">
+                <circle cx="360" cy="208" r="17"/><rect x="347" y="226" width="26" height="56" rx="12"/>
+              </g>
+              <circle cx="313" cy="196" r="40" fill="#ffffff" opacity=".05"/>
+            </svg>
+            <div class="nc-vcard__dur">10:26</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>雨夜天台魔改版：让男女主在第八分钟就说完所有真话</h3>
+            <p class="nc-vcard__abs">删掉误会、删掉第三者、删掉回忆闪回，只留下两个人在雨里把话讲完。全片只有 14 句台词，却成了站内收藏率最高的一部情感线魔改。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">情感故事</span><span class="nc-pill">台词重写</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#8b5cf6">沈</span>沈未眠 · 情感赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>12843</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：古风宫殿长廊与卷宗特写">
+              <defs><linearGradient id="ncV2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset="1" stop-color="#151019"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV2)"/>
+              <g fill="#241708">
+                <rect x="0" y="0" width="640" height="46"/>
+                <rect x="40" y="46" width="26" height="250"/><rect x="140" y="46" width="26" height="250"/>
+                <rect x="240" y="46" width="26" height="250"/><rect x="374" y="46" width="26" height="250"/>
+                <rect x="474" y="46" width="26" height="250"/><rect x="574" y="46" width="26" height="250"/>
+              </g>
+              <rect x="0" y="296" width="640" height="64" fill="#0f0a09"/>
+              <g transform="translate(196 120) rotate(-6)">
+                <rect width="250" height="140" rx="4" fill="#e8d9bd"/>
+                <g fill="#a08a68">
+                  <rect x="22" y="26" width="120" height="7" rx="3.5"/><rect x="22" y="44" width="200" height="6" rx="3"/>
+                  <rect x="22" y="60" width="180" height="6" rx="3"/><rect x="22" y="76" width="206" height="6" rx="3"/>
+                  <rect x="22" y="92" width="142" height="6" rx="3"/>
+                </g>
+                <circle cx="206" cy="106" r="18" fill="#c0392b" opacity=".8"/>
+              </g>
+              <circle cx="520" cy="86" r="38" fill="#ffb400" opacity=".25"/>
+              <circle cx="520" cy="86" r="20" fill="#ffb400" opacity=".5"/>
+            </svg>
+            <div class="nc-vcard__dur">13:05</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>古装悬疑魔改：把三集灭门案重剪成一份递进式卷宗</h3>
+            <p class="nc-vcard__abs">以“卷宗”为叙述线索重排时间线，观众跟着主角一层层翻页。创作者额外补录了 4 段旁白，让原本潦草的断案逻辑变得可以推敲。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">古装悬疑</span><span class="nc-pill">结构重排</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#ffb400">砚</span>砚台不洗 · 悬疑赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>9625</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：办公室隔间与堆叠文件">
+              <defs><linearGradient id="ncV3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2a2a"/><stop offset="1" stop-color="#12131f"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV3)"/>
+              <g fill="#12363a">
+                <rect x="30" y="60" width="170" height="240" rx="8"/>
+                <rect x="236" y="100" width="170" height="200" rx="8"/>
+                <rect x="442" y="40" width="168" height="260" rx="8"/>
+              </g>
+              <g fill="#2ee6c5" opacity=".55">
+                <rect x="52" y="86" width="60" height="8" rx="4"/><rect x="52" y="104" width="110" height="6" rx="3"/>
+                <rect x="258" y="126" width="52" height="8" rx="4"/><rect x="258" y="144" width="96" height="6" rx="3"/>
+                <rect x="464" y="66" width="70" height="8" rx="4"/><rect x="464" y="84" width="104" height="6" rx="3"/>
+              </g>
+              <g fill="#e9f5f2" opacity=".8">
+                <rect x="52" y="200" width="126" height="10" rx="5"/><rect x="258" y="230" width="126" height="10" rx="5"/>
+                <rect x="464" y="210" width="126" height="10" rx="5"/>
+              </g>
+              <rect x="0" y="300" width="640" height="60" fill="#0b1a1c"/>
+              <g stroke="#ff3860" stroke-width="2" opacity=".7"><path d="M300 300 L340 240 L380 300"/></g>
+            </svg>
+            <div class="nc-vcard__dur">07:18</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>职场爽剧魔改：把“当场辞职”改成一场安静的劳动仲裁</h3>
+            <p class="nc-vcard__abs">没有摔门、没有泼水，主角只是把工牌放在桌上，然后打开手机录音。创作者把爽感从情绪爆发改成了程序正义，被评论称为“最解压的一版”。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">职场日常</span><span class="nc-pill">现实现实</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#2ee6c5">陈</span>陈小满 · 职场赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>15238</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：市井夜市与摊位灯串">
+              <defs><linearGradient id="ncV4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241226"/><stop offset="1" stop-color="#2b1a10"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV4)"/>
+              <path d="M0 70 Q160 130 320 70 Q480 10 640 70" stroke="#ffb400" stroke-width="2" fill="none" opacity=".5"/>
+              <g fill="#ffb400">
+                <circle cx="80" cy="86" r="7"/><circle cx="180" cy="106" r="7"/><circle cx="280" cy="96" r="7"/>
+                <circle cx="380" cy="62" r="7"/><circle cx="480" cy="46" r="7"/><circle cx="580" cy="66" r="7"/>
+              </g>
+              <g fill="#1a1016">
+                <rect x="50" y="180" width="140" height="120" rx="8"/>
+                <rect x="250" y="160" width="150" height="140" rx="8"/>
+                <rect x="450" y="190" width="140" height="110" rx="8"/>
+              </g>
+              <g fill="#ff3860" opacity=".7">
+                <rect x="72" y="206" width="96" height="9" rx="4.5"/><rect x="272" y="186" width="106" height="9" rx="4.5"/>
+                <rect x="472" y="216" width="96" height="9" rx="4.5"/>
+              </g>
+              <g fill="#e9d6c0" opacity=".6">
+                <rect x="72" y="228" width="66" height="7" rx="3.5"/><rect x="272" y="208" width="76" height="7" rx="3.5"/>
+                <rect x="472" y="238" width="62" height="7" rx="3.5"/>
+              </g>
+              <rect x="0" y="300" width="640" height="60" fill="#150c0c"/>
+            </svg>
+            <div class="nc-vcard__dur">09:33</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>市井短剧魔改：把豪门恩怨搬到凌晨两点的烧烤摊</h3>
+            <p class="nc-vcard__abs">主角还是那群人，只是把别墅换成塑料凳，把红酒换成冰镇汽水。创作者说，他想拍的是“普通人也能有的大场面”。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">市井生活</span><span class="nc-pill">场景重构</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#ff6b85">林</span>林间夜宵摊 · 生活赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>7841</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：校园走廊与奔跑背影">
+              <defs><linearGradient id="ncV5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#131428"/><stop offset="1" stop-color="#231a33"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV5)"/>
+              <g stroke="#3a3a62" stroke-width="2" fill="none">
+                <path d="M0 120 H640 M0 250 H640"/>
+                <path d="M110 60 L50 320 M230 60 L190 320 M350 60 L330 320 M470 60 L470 320 M590 60 L610 320"/>
+              </g>
+              <g fill="#8b5cf6" opacity=".28">
+                <rect x="0" y="0" width="640" height="120"/>
+              </g>
+              <g fill="#f5d67b">
+                <circle cx="300" cy="150" r="20"/><rect x="284" y="172" width="32" height="66" rx="14"/>
+                <path d="M284 200 L250 226 L260 240 L296 214 Z"/>
+              </g>
+              <g fill="#ff3860" opacity=".8">
+                <circle cx="420" cy="164" r="18"/><rect x="405" y="184" width="30" height="60" rx="13"/>
+              </g>
+              <rect x="0" y="300" width="640" height="60" fill="#0c0d1a"/>
+              <circle cx="560" cy="90" r="46" fill="#2ee6c5" opacity=".12"/>
+            </svg>
+            <div class="nc-vcard__dur">06:47</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>青春短剧魔改：用一整集补上原作里被跳过的告白</h3>
+            <p class="nc-vcard__abs">创作者找回了原片中被删的 40 秒素材，重新配音、重做调色，把一句“我们以后再说”变成了一段完整的长镜头告白。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">青春成长</span><span class="nc-pill">素材补录</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#8b5cf6">许</span>许知返 · 青春赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>11092</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="nc-vcard">
+          <div class="nc-vcard__cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="魔改短剧封面：录音棚与声波线条">
+              <defs><linearGradient id="ncV6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e1420"/><stop offset="1" stop-color="#171b26"/></linearGradient></defs>
+              <rect width="640" height="360" fill="url(#ncV6)"/>
+              <g stroke="#ff3860" stroke-width="2.4" fill="none" opacity=".85">
+                <path d="M20 180 H90 L110 140 L130 220 L150 180 H210 L230 120 L250 240 L270 180 H330"/>
+              </g>
+              <g stroke="#ffb400" stroke-width="2.4" fill="none" opacity=".8">
+                <path d="M330 180 H390 L410 100 L430 260 L450 180 H510 L530 140 L550 220 L570 180 H620"/>
+              </g>
+              <rect x="60" y="250" width="520" height="14" rx="7" fill="#2f2a3e"/>
+              <rect x="60" y="278" width="340" height="14" rx="7" fill="#272232"/>
+              <circle cx="320" cy="86" r="34" fill="#8b5cf6" opacity=".35"/>
+              <circle cx="320" cy="86" r="14" fill="#8b5cf6" opacity=".7"/>
+            </svg>
+            <div class="nc-vcard__dur">11:12</div>
+            <div class="nc-vcard__play"><span><svg viewBox="0 0 24 24"><path d="M8 5 L19 12 L8 19 Z"/></svg></span></div>
+          </div>
+          <div class="nc-vcard__body">
+            <h3>声音魔改实验：只保留原剧环境音，重新配一版旁白</h3>
+            <p class="nc-vcard__abs">全片抽掉 23 段配乐，靠录音棚重新录制旁白撑起情绪。创作者说这是“一次把短剧当广播剧来做的尝试”，评论区有人反复听三遍。</p>
+            <div class="nc-vcard__tags"><span class="nc-pill">声画实验</span><span class="nc-pill">原创旁白</span></div>
+            <div class="nc-vcard__author"><span class="av" style="background:#ffb400">周</span>周末录音棚 · 声音赛道</div>
+            <div class="nc-vcard__bar">
+              <button class="nc-act" type="button" data-like aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M7 10v10H4V10h3zm3 10V10l4-7 1.5 1.2-1 4.3H20a2 2 0 0 1 2 2.2l-1.2 7A2 2 0 0 1 18.8 20H10z"/></svg><span data-like-count>6318</span></button>
+              <button class="nc-act" type="button" data-save aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg><span>收藏</span></button>
+              <button class="nc-act nc-act--right" type="button" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 关键词解析 800 字以上 -->
+  <section class="nc-sec nc-sec--alt" id="parse">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">INSIGHT · 关键词解析</div>
+          <h2>什么是短剧魔改版：从二次创作到一条内容赛道的沉淀</h2>
+          <p class="nc-sec__desc">这一部分完整解释 51短剧魔改版 这个关键词背后的行业逻辑、创作方法与平台机制，适合第一次接触魔改的观众和准备入驻的创作者阅读。</p>
+        </div>
+      </div>
+      <div class="nc-parse">
+        <aside class="nc-parse__aside">
+          <svg viewBox="0 0 520 400" role="img" aria-label="短剧魔改流程示意：素材、剧本、剪辑、发布四阶段构成的内容生产链">
+            <defs>
+              <linearGradient id="ncP1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#201a2f"/><stop offset="1" stop-color="#171524"/></linearGradient>
+              <linearGradient id="ncP2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3860"/><stop offset="1" stop-color="#ffb400"/></linearGradient>
+            </defs>
+            <rect width="520" height="400" fill="url(#ncP1)"/>
+            <g stroke="#3a3350" stroke-width="1" opacity=".8">
+              <path d="M40 100 H480 M40 200 H480 M40 300 H480"/>
+            </g>
+            <g transform="translate(40 60)">
+              <rect width="100" height="72" rx="10" fill="#2b2440" stroke="#4a3f68"/>
+              <rect x="14" y="16" width="72" height="8" rx="4" fill="#8b5cf6" opacity=".8"/>
+              <rect x="14" y="32" width="54" height="6" rx="3" fill="#655a80"/>
+              <rect x="14" y="48" width="66" height="6" rx="3" fill="#4d4466"/>
+            </g>
+            <g transform="translate(170 60)">
+              <rect width="100" height="72" rx="10" fill="#2b2440" stroke="#4a3f68"/>
+              <path d="M20 36 L40 24 L40 48 Z" fill="#ff3860"/>
+              <rect x="50" y="26" width="34" height="7" rx="3.5" fill="#6f638c"/>
+              <rect x="50" y="40" width="26" height="6" rx="3" fill="#584e72"/>
+            </g>
+            <g transform="translate(300 60)">
+              <rect width="100" height="72" rx="10" fill="#2b2440" stroke="#4a3f68"/>
+              <g fill="#2ee6c5" opacity=".8">
+                <rect x="18" y="42" width="8" height="16" rx="3"/><rect x="32" y="32" width="8" height="26" rx="3"/>
+                <rect x="46" y="22" width="8" height="36" rx="3"/><rect x="60" y="34" width="8" height="24" rx="3"/><rect x="74" y="28" width="8" height="30" rx="3"/>
+              </g>
+            </g>
+            <g transform="translate(430 60)">
+              <rect width="50" height="72" rx="10" fill="url(#ncP2)" opacity=".85"/>
+              <path d="M18 28 L34 36 L18 44 Z" fill="#fff"/>
+            </g>
+            <g font-family="sans-serif" font-size="12" fill="#807a95">
+              <text x="60" y="158" text-anchor="middle">正版素材</text>
+              <text x="220" y="158" text-anchor="middle">剧本重写</text>
+              <text x="350" y="158" text-anchor="middle">剪辑调色</text>
+              <text x="455" y="158" text-anchor="middle">官方发布</text>
+            </g>
+            <g stroke="#4a3f68" stroke-width="2" fill="none" stroke-dasharray="5 5">
+              <path d="M145 96 H165 M275 96 H295 M405 96 H425"/>
+            </g>
+            <g transform="translate(40 200)" fill="#b7b2c8" font-family="sans-serif" font-size="13">
+              <text x="0" y="0">· 授权片库：98% 正版素材覆盖</text>
+              <text x="0" y="34">· 工具链：分镜台 / 台词本 / 声音棚</text>
+              <text x="0" y="68">· 审核：双人复核 + 版权校验</text>
+              <text x="0" y="102">· 分发：站内推荐 + 创作者联动</text>
+              <text x="0" y="136">· 反馈：数据看板 + 编辑点评</text>
+            </g>
+            <circle cx="440" cy="300" r="58" fill="#ff3860" opacity=".08"/>
+            <circle cx="440" cy="300" r="34" fill="#ff3860" opacity=".14"/>
+            <circle cx="440" cy="300" r="12" fill="#ff3860" opacity=".7"/>
+          </svg>
+          <div class="nc-parse__aside__cap">内容生产链示意：从正版素材到官方发布，51短剧魔改版把魔改拆成可复用的四段工序。</div>
+        </aside>
+
+        <div class="nc-parse__body">
+          <h3>一、短剧魔改版究竟在改什么</h3>
+          <p>很多人第一次听到“短剧魔改版”，会以为只是给原剧换个 BGM、加几句吐槽字幕。实际上，在 51短剧魔改版 这样的原创视频平台上，魔改是一套相对完整的创作方法：它指的是在获得正版授权的前提下，对既有短剧的叙事结构、人物动机、台词密度甚至结局走向进行重新编排，让同一批素材讲出不同的故事。<b>改的不是画面像素，而是叙事判断</b>。</p>
+          <p>最常见的三类魔改路径，第一类是结构重排。原作往往按时间顺序线性推进，创作者会把关键信息提前，用卷宗、倒叙、多线并置的方式让悬念提前成立。前面提到的《长安三更》魔改终章，就是把三集灭门案重新剪成一份递进式卷宗，观众跟着主角一层层翻页，推理感自然就有了。</p>
+          <p>第二类是人物动机改写。原作里很多反派的坏是功能性的，需要一个坏人，于是就有了坏人。魔改创作者会补写他的前史，让他做出选择的那一刻有迹可循。《退婚后我成了资本局操盘手》里，创作者给反派补了三场戏，全部用原素材重组加旁白完成，没有新增外景，却让这个角色的可信度提高了一个量级。</p>
+          <p>第三类是台词与语境置换。把豪门台词换到市井场景，把霸总对话换成会议室黑话，这类魔改门槛最低，但要做到好笑而不油，需要对原剧的节奏有非常准确的把握。平台编辑部在审片时最看重的一点，就是这类作品有没有自己的语言，而不是把网络热梗原封不动搬进来。</p>
+
+          <div class="nc-parse__quote">“魔改的边界不是在素材上，而是在理解上。你越懂原剧，才越有资格改它。”——摘自 51短剧魔改版 创作者手册第一章</div>
+
+          <h3>二、为什么需要一个专门的短剧魔改版平台</h3>
+          <p>过去几年，短剧魔改内容分散在各类综合视频平台，创作者面临三个现实问题：素材版权说不清、作品被搬运难维权、优质内容缺少稳定曝光。51短剧魔改版 作为垂直领域的企业级平台，把这三点拆开逐一解决。素材侧，平台与版权方建立授权合作，官方素材库目前开放 1200 段可商用高清片段，每段素材都带授权编号与使用范围说明；权益侧，作品上传即生成带时间戳的原创存证，搬运投诉有明确的处理时限；曝光侧，站内设置焦点推荐、热门视频流、专题企划、数据榜单四条分发路径，新人也有一条从新人榜往上走的清晰台阶。</p>
+          <p>这套机制的背后逻辑其实很朴素：<b>让认真做内容的人，能持续做下去</b>。平台不追求短期爆款数量，而是通过持续运营的创作者社区，让魔改从一次性的玩梗，变成可以积累、可以复盘、可以成长的手艺。这也是我们把“原创、正版、高清、专业”四个词写进品牌定位的原因——它们不是口号，而是每一部作品从素材到发布都要经过的关卡。</p>
+          <p>对观众来说，平台化的另一个好处是可预期的品质。站内所有作品都经过双人复核，画面清晰度、字幕规范、音画同步、版权标注四项不达标不会进入推荐位。用户评价区里出现频率最高的词是“看着舒服”，这三个字在魔改内容里其实很难得。</p>
+
+          <h3>三、一套魔改作品的标准工序</h3>
+          <p>平台把魔改拆成四段工序，并在工具链里对应了三个自研工具，这也是 51短剧魔改版 与普通剪辑投稿最大的区别。</p>
+          <p><b>第一步，素材筛选。</b>创作者先在正版片库里按题材、情绪、场景检索，找到与原作叙事目标匹配的片段。工具会同时给出这段素材被使用过的次数，避免大量作品撞镜头。第二步，<b>剧本重写</b>。平台提供的台词本工具支持逐句对照原字幕，改一句、标一句，最后生成完整的修改记录，方便审核与复盘。第三步，<b>剪辑与调色</b>。分镜魔改台支持多结局预演，创作者可以先在时间线上跑一遍三种走向，再决定最终版本。第四步，<b>声音与发布</b>。声音棚工具内置环境音库与旁白降噪，发布前一键完成版权标注与清晰度检查。</p>
+          <p>这四步听起来繁琐，但实际使用中，熟练创作者完成一部 8 分钟作品的平均周期已经从早期的两周压缩到 4 天左右。效率提升不是靠降低标准，而是靠把重复劳动交给工具，把判断力留给创作者。</p>
+
+          <h3>四、内容生态与创作者的长期成长</h3>
+          <p>一个内容赛道能不能走得远，看的是它有没有形成正向循环。51短剧魔改版 目前的内容生态由三部分支撑：一是稳定的正版素材供给，二是持续更新的工具与教程，三是分层的创作者成长体系。新人从新人榜进入，完成平台发布的魔改攻略任务后解锁进阶素材权限；成熟创作者可以申请专题企划，由编辑参与选题与剪辑建议；头部创作者则进入品牌合作池，与版权方直接对话，参与原作衍生内容的官方发布。</p>
+          <p>平台同时保留了大量真实的生活感内容。不是每一部作品都要冲榜，有些创作者只是把魔改当成一种记录方式：把老剧里的某个场景改给家人看，把一句台词写给十年前的自己。这些作品播放量不高，但在用户评价区里往往最动人。我们始终认为，一个值得信赖的内容平台，既要有行业领先的精品内容，也要容得下这些安静的、温暖的表达。</p>
+          <p>从更长的时间尺度看，短剧魔改版这个关键词代表的不只是一种内容形态，更是一种创作态度：尊重原作，也尊重自己的判断；借用素材，但产出新的东西。51短剧魔改版 会继续在这条垂直领域深耕，把正版授权、专业工具、社区温度三件事做好，让更多创作者在这里被看见，也让更多观众在这里找到共鸣。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 专题企划 -->
+  <section class="nc-sec" id="topics">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">PROGRAM · 专题企划</div>
+          <h2>专题企划：三条正在更新的魔改长线</h2>
+          <p class="nc-sec__desc">专题由平台编辑部与创作者共同策划，围绕一个母题持续更新。每个专题都在 51短剧魔改版 官方专题页同步连载。</p>
+        </div>
+        <a class="nc-link-more" href="#cta">报名参与企划 →</a>
+      </div>
+      <div class="nc-topics">
+        <article class="nc-topic nc-topic--feature">
+          <span class="nc-topic__status"><span>●</span> 更新中 · 第 3 期</span>
+          <h3>「换个活法」都市人物重写计划</h3>
+          <p>把都市短剧里那些被剧情推着走的人，重新放回有选择的位置。专题邀请 12 位创作者，每人改写一部作品的关键抉择，并附上 300 字的创作自述。</p>
+          <ul class="nc-topic__items">
+            <li>《退婚后我成了资本局操盘手》第 1 集 <span>9.4 分</span></li>
+            <li>《加班到九点》会议室黑话全替换 <span>9.1 分</span></li>
+            <li>《合租第 100 天》把争吵改成对坐 <span>8.9 分</span></li>
+          </ul>
+        </article>
+        <article class="nc-topic">
+          <span class="nc-topic__status warn"><span>●</span> 预告 · 12 月上线</span>
+          <h3>「旧片新声」声音重制企划</h3>
+          <p>只保留原剧画面，把所有声音推倒重来。参与者需要提交完整的声轨设计说明，优秀作品将进入平台声音实验合辑。</p>
+          <ul class="nc-topic__items">
+            <li>环境音重建工作坊开放报名 <span>限额 60</span></li>
+            <li>旁白写作模板已上线工具库 <span>新</span></li>
+            <li>首届声音魔改评选启动 <span>12/08</span></li>
+          </ul>
+        </article>
+        <article class="nc-topic">
+          <span class="nc-topic__status"><span>●</span> 更新中 · 第 7 期</span>
+          <h3>「市井大场面」场景重构专栏</h3>
+          <p>把宏大叙事搬进街巷，把豪门恩怨放进夜市。这个专题已经积累了 46 部作品，是站内平均完播率最高的一条长线。</p>
+          <ul class="nc-topic__items">
+            <li>烧烤摊版豪门恩怨 <span>完播 78%</span></li>
+            <li>菜市场里的董事会 <span>完播 74%</span></li>
+            <li>天桥下的告白长镜头 <span>完播 81%</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 创作者矩阵：双列简介 -->
+  <section class="nc-sec nc-sec--alt" id="authors">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">CREATORS · 创作者矩阵</div>
+          <h2>签约创作者：把魔改做成手艺的人</h2>
+          <p class="nc-sec__desc">他们来自不同行业，有剪辑师、编剧、教师、录音师，共同点是都在 51短剧魔改版 持续更新超过一年。</p>
+        </div>
+        <a class="nc-link-more" href="#cta">申请成为创作者 →</a>
+      </div>
+      <div class="nc-authors">
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#ff3860,#8b5cf6)">南</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">南城剪辑局 <span class="nc-author__field">都市逆袭</span></div>
+            <div class="nc-author__nums"><span>作品 <b>86</b></span><span>粉丝 <b>24.3 万</b></span></div>
+            <p>前广告公司剪辑指导，擅长把短剧的爽感节奏拆成可量化的镜头段落。他坚持每部作品先写 800 字结构说明再动手剪，代表作《退婚后我成了资本局操盘手》连续三周占据热度榜首位。</p>
+            <button class="nc-author__more" type="button" data-author="南城剪辑局|都市逆袭赛道签约创作者，累计作品 86 部，代表作《退婚后我成了资本局操盘手》系列。创作主张：先写结构，再动剪刀。">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#ffb400,#ff6b85)">砚</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">砚台不洗 <span class="nc-author__field">古装悬疑</span></div>
+            <div class="nc-author__nums"><span>作品 <b>61</b></span><span>粉丝 <b>17.8 万</b></span></div>
+            <p>历史系毕业，做魔改前写过三年网络小说。他最擅长补全反派前史，用卷宗式结构重排时间线，被观众称为“把短剧当推理小说改的人”。近半年专注于古装悬疑赛道。</p>
+            <button class="nc-author__more" type="button" data-author="砚台不洗|古装悬疑赛道签约创作者，历史系背景，擅长卷宗式结构重排与反派前史补写，作品 61 部。">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#2ee6c5,#1a8f7c)">陈</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">陈小满 <span class="nc-author__field">职场现实</span></div>
+            <div class="nc-author__nums"><span>作品 <b>54</b></span><span>粉丝 <b>15.2 万</b></span></div>
+            <p>在互联网公司做了七年 HR，转做全职创作者。她的魔改几乎不靠情绪爆发，而是把爽点落在流程、证据和规则上。职场赛道里少见的冷静派，评论区常有人说“看着她改，我自己也想通了”。</p>
+            <button class="nc-author__more" type="button" data-author="陈小满|职场现实赛道签约创作者，前 HR，擅长把爽感转化为程序与规则的胜利，作品 54 部。">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#8b5cf6,#4c2e8a)">沈</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">沈未眠 <span class="nc-author__field">情感叙事</span></div>
+            <div class="nc-author__nums"><span>作品 <b>73</b></span><span>粉丝 <b>21.6 万</b></span></div>
+            <p>戏剧学院编剧专业出身，偏爱做减法。她删掉误会、删掉第三者、删掉配乐，只留下人物之间最直接的对话。站内收藏率最高的《雨夜天台魔改版》就出自她手，全片只有 14 句台词。</p>
+            <button class="nc-author__more" type="button" data-author="沈未眠|情感叙事赛道签约创作者，编剧专业背景，主张做减法式魔改，作品 73 部，代表作《雨夜天台魔改版》。">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#ff6b85,#c0304f)">林</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">林间夜宵摊 <span class="nc-author__field">市井生活</span></div>
+            <div class="nc-author__nums"><span>作品 <b>42</b></span><span>粉丝 <b>9.7 万</b></span></div>
+            <p>白天开烧烤摊，晚上剪片子。他的素材大多来自自己摊位周围的真实声音，喜欢把大情节放进小场景。作品节奏偏慢，却总能在评论区引起一阵关于“普通人的大场面”的讨论。</p>
+            <button class="nc-author__more" type="button" data-author="林间夜宵摊|市井生活赛道签约创作者，坚持用真实环境音做魔改，作品 42 部，代表作《市井版豪门恩怨》。">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="nc-author">
+          <div class="nc-author__av" style="background:linear-gradient(140deg,#ffb400,#a86f00)">周</div>
+          <div class="nc-author__info">
+            <div class="nc-author__name">周末录音棚 <span class="nc-author__field">声音实验</span></div>
+            <div class="nc-author__nums"><span>作品 <b>38</b></span><span>粉丝 <b>11.4 万</b></span></div>
+            <p>录音师出身，是平台最早做声音魔改的创作者。他主张“画面交给原剧，情绪交给声音”，擅长用环境音和原创旁白重建叙事节奏。目前在带一个 20 人的声音重制小班。</p>
+            <button class="nc-author__more" type="button" data-author="周末录音棚|声音实验赛道签约创作者，录音师背景，专注环境音重建与原创旁白，作品 38 部。">查看作者档案 →</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 榜单 + 评价 -->
+  <section class="nc-sec" id="rank">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">RANK &amp; REVIEW · 数据与口碑</div>
+          <h2>热度榜与用户评价：短剧魔改版的真实反馈</h2>
+          <p class="nc-sec__desc">榜单按近七日播放、互动、完播三项加权计算，用户评价来自站内真实评论抽样，不做筛选。</p>
+        </div>
+      </div>
+      <div class="nc-double">
+        <div class="nc-rank">
+          <div class="nc-rank__tabs" role="tablist" aria-label="榜单切换">
+            <button class="nc-rank__tab active" type="button" data-rank="hot" role="tab" aria-selected="true">热度榜</button>
+            <button class="nc-rank__tab" type="button" data-rank="new" role="tab" aria-selected="false">新人榜</button>
+            <button class="nc-rank__tab" type="button" data-rank="rate" role="tab" aria-selected="false">口碑榜</button>
+          </div>
+          <div id="ncRankList">
+            <div class="nc-rank__row"><span class="nc-rank__no">1</span><span class="nc-rank__name">退婚后我成了资本局操盘手</span><span class="nc-rank__heat">126.8 万</span></div>
+            <div class="nc-rank__row"><span class="nc-rank__no">2</span><span class="nc-rank__name">加班到九点·会议室黑话版</span><span class="nc-rank__heat">98.4 万</span></div>
+            <div class="nc-rank__row"><span class="nc-rank__no">3</span><span class="nc-rank__name">雨夜天台魔改版</span><span class="nc-rank__heat">87.1 万</span></div>
+            <div class="nc-rank__row"><span class="nc-rank__no">4</span><span class="nc-rank__name">长安三更·卷宗式重排</span><span class="nc-rank__heat">76.5 万</span></div>
+            <div class="nc-rank__row"><span class="nc-rank__no">5</span><span class="nc-rank__name">市井版豪门恩怨</span><span class="nc-rank__heat">64.2 万</span></div>
+            <div class="nc-rank__row"><span class="nc-rank__no">6</span><span class="nc-rank__name">只留环境音的声音实验</span><span class="nc-rank__heat">58.9 万</span></div>
+          </div>
+        </div>
+        <div class="nc-quotes">
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★★</div>
+            <p>第一次在短剧魔改版看到有人把卷宗结构用在古装上，那个翻页的节奏我反复看了三遍，比原作紧凑太多。</p>
+            <div class="nc-quote__who"><b>@看剧不吃糖</b><span>古装项目</span></div>
+          </div>
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★★</div>
+            <p>声音实验那部真的绝，抽掉配乐之后反而更压抑。作为录音从业者，我很少在短剧里听到这么干净的环境音。</p>
+            <div class="nc-quote__who"><b>@耳朵在场</b><span>声音重制</span></div>
+          </div>
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★☆</div>
+            <p>职场版看得很解压，但有一点想说，仲裁那段台词稍微密了，如果给观众多一点反应时间会更好。</p>
+            <div class="nc-quote__who"><b>@打工人阿泽</b><span>职场赛道</span></div>
+          </div>
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★★</div>
+            <p>平台的正版素材库是真的好用，标注清楚，用起来没什么顾虑。作为刚入驻的创作者，这一点让我愿意留下来。</p>
+            <div class="nc-quote__who"><b>@剪辑新手小伍</b><span>新人创作者</span></div>
+          </div>
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★☆</div>
+            <p>整体品质很稳，推荐位偶尔会连续几天都是都市题材，希望专题企划能多照顾一点亲情线和青春线。</p>
+            <div class="nc-quote__who"><b>@夜航船</b><span>内容结构</span></div>
+          </div>
+          <div class="nc-quote">
+            <div class="nc-quote__stars">★★★★★</div>
+            <p>烧烤摊那版我是在夜市里点开看的，周围真的很吵，但看完居然有点想哭。这大概就是魔改的意义吧。</p>
+            <div class="nc-quote__who"><b>@三斤半</b><span>市井生活</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 企业动态 + FAQ -->
+  <section class="nc-sec nc-sec--alt" id="faq">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">NEWS &amp; HELP · 动态与帮助</div>
+          <h2>企业动态与常见问题</h2>
+          <p class="nc-sec__desc">51短剧魔改版 的官方发布、工具更新与创作者政策都会在这里同步，帮助中心收录了入驻、投稿、版权三方面的高频问题。</p>
+        </div>
+      </div>
+      <div class="nc-info">
+        <div>
+          <ol class="nc-timeline">
+            <li>
+              <time>2026 / 11 / 22</time>
+              <h4>冬季魔改挑战赛开启报名</h4>
+              <p>本次挑战赛主题为「换个活法」，设都市、古装、市井三条赛道，首奖 3 万元创作基金，报名截止 12 月 12 日，评审由编辑部与签约创作者共同组成。</p>
+            </li>
+            <li>
+              <time>2026 / 11 / 20</time>
+              <h4>分镜魔改台 V2.4 上线</h4>
+              <p>新增多结局预演与台词对照标色功能，创作者可以在时间线上同时保留三个走向，导出时自动附上修改记录，方便审核与复盘。</p>
+            </li>
+            <li>
+              <time>2026 / 11 / 18</time>
+              <h4>第 37 期精品内容榜发布</h4>
+              <p>都市逆袭赛道新增 42 部正版授权短剧，古装悬疑与情感叙事两个赛道的素材检索效率提升明显，本期共有 18 位创作者首次进入推荐位。</p>
+            </li>
+            <li>
+              <time>2026 / 11 / 15</time>
+              <h4>创作者扶持计划升级</h4>
+              <p>高清素材库开放 1200 段官方可商用片段，新人完成魔改攻略任务后即可解锁进阶素材权限，并进入新人榜参与流量分配。</p>
+            </li>
+            <li>
+              <time>2026 / 11 / 08</time>
+              <h4>官方版权校验流程说明更新</h4>
+              <p>所有上传作品将通过双人复核与版权校验，四类不达标情形不予进入推荐位，具体标准已同步至创作者手册与帮助中心。</p>
+            </li>
+          </ol>
+        </div>
+        <div class="nc-faq">
+          <details open>
+            <summary>51短剧魔改版 是什么平台？</summary>
+            <p>它是专注短剧二次创作的官方视频平台，提供正版授权素材、魔改工具链与创作者社区，作品经过复核后进入推荐、专题与榜单分发。</p>
+          </details>
+          <details>
+            <summary>成为创作者需要什么条件？</summary>
+            <p>完成实名认证并阅读创作者手册即可申请。平台不设粉丝门槛，但要求作品使用官方正版素材、注明改动说明，并通过双人复核。</p>
+          </details>
+          <details>
+            <summary>魔改素材可以商用吗？</summary>
+            <p>官方素材库中的片段已获得授权，可在站内作品中使用。商用场景需在作品页申请额外授权，平台会在三个工作日内给出答复。</p>
+          </details>
+          <details>
+            <summary>投稿后多久能看到审核结果？</summary>
+            <p>常规作品通常在 24 小时内完成初审，涉及古装、悬疑等题材会追加一次复核，整体不超过 48 小时。审核结果会在创作中心提示。</p>
+          </details>
+          <details>
+            <summary>作品被搬运了怎么办？</summary>
+            <p>在作品页使用举报入口提交原创存证编号，平台提供带时间戳的存证记录。搬运投诉的处理时限为五个工作日内给出结论。</p>
+          </details>
+          <details>
+            <summary>如何参加冬季魔改挑战赛？</summary>
+            <p>在创作中心进入挑战赛页面，选择赛道并提交作品即视为报名。同一创作者可提交两部作品，但只有一部能进入终评。</p>
+          </details>
+          <details>
+            <summary>新人榜和热度榜有什么区别？</summary>
+            <p>新人榜面向入驻一年内的创作者，按作品完成度与互动质量加权；热度榜面向全站，统计播放、互动与完播三项综合表现。</p>
+          </details>
+          <details>
+            <summary>平台支持哪些题材？</summary>
+            <p>目前覆盖都市、古装、职场、情感、青春、市井与声音实验七个方向，多元包容是平台选题的长期原则，鼓励跨题材尝试。</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作伙伴墙 -->
+  <section class="nc-sec" id="partners">
+    <div class="nc-wrap">
+      <div class="nc-sec__head">
+        <div>
+          <div class="nc-sec__kicker">PARTNERS · 合作与生态</div>
+          <h2>合作品牌与内容伙伴</h2>
+          <p class="nc-sec__desc">我们与版权方、制作机构、声音工作室和高校影视社团一同推动短剧魔改版的内容生态建设。</p>
+        </div>
+      </div>
+      <div class="nc-partners">
+        <div class="nc-partner"><b>星幕版权</b><small>正版片库合作</small></div>
+        <div class="nc-partner"><b>声场录音棚</b><small>声音重制支持</small></div>
+        <div class="nc-partner"><b>南岭影视社</b><small>校园创作者计划</small></div>
+        <div class="nc-partner"><b>长街制作</b><small>联合专题企划</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA 投稿 -->
+  <section class="nc-sec" id="cta">
+    <div class="nc-wrap">
+      <div class="nc-cta">
+        <div>
+          <h2>把你的短剧魔改版，交给认真看内容的人</h2>
+          <p>上传作品、参与挑战赛、报名专题企划，或只是留一句话给喜欢的那位创作者。51短剧魔改版 持续运营中，期待与你一起把这条赛道做得更扎实。</p>
+        </div>
+        <div class="nc-cta__btns">
+          <button class="nc-btn nc-btn--primary" type="button" data-submit>上传投稿</button>
+          <button class="nc-btn nc-btn--ghost" type="button" data-share>分享给同好</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="nc-footer">
+  <div class="nc-wrap">
+    <div class="nc-footer__grid">
+      <div>
+        <div class="nc-footer__brand">
+          <span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#fff"/></svg></span>
+          <b>51短剧魔改版</b>
+        </div>
+        <p>51短剧魔改版 官方网站，专注短剧二次创作的原创视频品牌与内容生态平台，持续为创作者与企业搭建高品质、正版高清的魔改社区。深耕垂直领域，坚持用户至上与匠心制作，努力成为值得信赖的用户首选平台。</p>
+      </div>
+      <div>
+        <h4>内容</h4>
+        <ul>
+          <li><a href="#focus">焦点推荐</a></li>
+          <li><a href="#videos">热门魔改</a></li>
+          <li><a href="#topics">专题企划</a></li>
+          <li><a href="#rank">数据榜单</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>创作</h4>
+        <ul>
+          <li><a href="#authors">创作者矩阵</a></li>
+          <li><a href="#cta">投稿入口</a></li>
+          <li><a href="#parse">关键词解析</a></li>
+          <li><a href="#faq">帮助中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#faq">企业动态</a></li>
+          <li><a href="#partners">合作品牌</a></li>
+          <li><a href="#faq">版权说明</a></li>
+          <li><a href="#faq">联系与反馈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="nc-footer__bottom">
+      <span>© 2026 51短剧魔改版 官方网站 · 版权所有 · 持续运营中</span>
+      <span>备案号：沪ICP备2026-1147号-1 · 正版授权内容平台</span>
+    </div>
+  </div>
+</footer>
+
+<button class="nc-top" id="ncTop" type="button" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24"><path d="M12 19 V5 M5 12 L12 5 L19 12"/></svg>
+</button>
+
+<div class="nc-toast" id="ncToast" role="status" aria-live="polite"></div>
+
+<div class="nc-modal" id="ncModal" aria-hidden="true">
+  <div class="nc-modal__box" style="position:relative">
+    <button class="nc-modal__close" id="ncModalClose" type="button" aria-label="关闭">×</button>
+    <div id="ncModalBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var toastEl = document.getElementById('ncToast');
+  var toastTimer = null;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+  }
+
+  /* 移动端导航 */
+  var burger = document.getElementById('ncBurger');
+  var menu = document.getElementById('ncMenu');
+  if(burger && menu){
+    burger.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 搜索反馈 */
+  var input = document.getElementById('ncSearch');
+  var hint = document.getElementById('ncSearchHint');
+  var searchBtn = document.getElementById('ncSearchBtn');
+  function doSearch(){
+    var kw = (input.value || '').trim();
+    if(!kw){
+      hint.textContent = '请输入短剧名称、创作者或专题关键词，例如「卷宗」「声音实验」';
+      hint.classList.add('on');
+      return;
+    }
+    var pool = ['退婚后我成了资本局操盘手','加班到九点·会议室黑话版','雨夜天台魔改版','长安三更·卷宗式重排','市井版豪门恩怨','只留环境音的声音实验'];
+    var hit = pool.filter(function(x){ return x.indexOf(kw) > -1; });
+    if(hit.length){
+      hint.textContent = '找到 ' + hit.length + ' 部相关作品：' + hit.join('、');
+    }else{
+      hint.textContent = '暂未检索到「' + kw + '」，已为你跳转到热门魔改与专题企划，可继续浏览。';
+    }
+    hint.classList.add('on');
+    var target = document.getElementById('videos');
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  }
+  if(searchBtn) searchBtn.addEventListener('click', doSearch);
+  if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); doSearch(); } });
+
+  /* 点赞 / 收藏 */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('[data-like]');
+    if(likeBtn){
+      var cnt = likeBtn.querySelector('[data-like-count]');
+      var n = cnt ? parseInt(cnt.textContent.replace(/\D/g,''),10) : 0;
+      if(likeBtn.classList.toggle('liked')){
+        likeBtn.setAttribute('aria-pressed','true');
+        if(cnt) cnt.textContent = String(n + 1);
+        toast('已点赞，感谢支持原创内容');
+      }else{
+        likeBtn.setAttribute('aria-pressed','false');
+        if(cnt) cnt.textContent = String(Math.max(0, n - 1));
+        toast('已取消点赞');
+      }
+      return;
+    }
+    var saveBtn = e.target.closest('[data-save]');
+    if(saveBtn){
+      if(saveBtn.classList.toggle('saved')){
+        saveBtn.setAttribute('aria-pressed','true');
+        saveBtn.querySelector('span').textContent = '已收藏';
+        toast('已加入个人收藏夹');
+      }else{
+        saveBtn.setAttribute('aria-pressed','false');
+        saveBtn.querySelector('span').textContent = '收藏';
+        toast('已取消收藏');
+      }
+      return;
+    }
+    var commentBtn = e.target.closest('[data-comment]');
+    if(commentBtn){
+      openModal('<h3>发表一条短评</h3><p>评论将同步至 51短剧魔改版 作品的讨论区，请保持友善与具体。</p><textarea class="nc-field" rows="4" placeholder="说说你最喜欢的一场戏，或者一个你希望看到的魔改方向……"></textarea><button class="nc-btn nc-btn--primary" type="button" id="ncCommentSend">提交短评</button>');
+      setTimeout(function(){
+        var b = document.getElementById('ncCommentSend');
+        if(b) b.addEventListener('click', function(){ closeModal(); toast('短评已提交，通过审核后将展示'); });
+      }, 30);
+      return;
+    }
+    var shareBtn = e.target.closest('[data-share]');
+    if(shareBtn){
+      openModal('<h3>分享 51短剧魔改版</h3><p>把喜欢的魔改作品分享给同好，让更多创作者被看见。</p><div class="nc-share-grid"><button type="button" data-copy>复制链接</button><button type="button" data-share-tip="微信">微信</button><button type="button" data-share-tip="微博">微博</button><button type="button" data-share-tip="QQ">QQ</button></div>');
+      return;
+    }
+    var copyBtn = e.target.closest('[data-copy]');
+    if(copyBtn){
+      var link = 'https://51duanju.example.com/';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(function(){ toast('链接已复制，去分享吧'); }).catch(function(){ toast('复制失败，请手动选择文本'); });
+      }else{
+        toast('链接已生成，可手动复制分享');
+      }
+      closeModal();
+      return;
+    }
+    var shareTip = e.target.closest('[data-share-tip]');
+    if(shareTip){
+      toast('已生成分享卡片，可前往' + shareTip.getAttribute('data-share-tip') + '粘贴发送');
+      closeModal();
+      return;
+    }
+    var submitBtn = e.target.closest('[data-submit]');
+    if(submitBtn){
+      openModal('<h3>作品投稿</h3><p>请填写作品基本信息，平台将在 24 小时内完成初审，涉及古装、悬疑题材会追加一次复核。</p><input class="nc-field" type="text" placeholder="作品标题"><input class="nc-field" type="text" placeholder="所属赛道，如 都市逆袭 / 古装悬疑"><textarea class="nc-field" rows="3" placeholder="一句话说明你的魔改改动方向"></textarea><button class="nc-btn nc-btn--primary" type="button" id="ncSubmitSend">提交审核</button>');
+      setTimeout(function(){
+        var b = document.getElementById('ncSubmitSend');
+        if(b) b.addEventListener('click', function(){ closeModal(); toast('投稿已提交，请在创作中心查看进度'); });
+      }, 30);
+      return;
+    }
+    var authorBtn = e.target.closest('[data-author]');
+    if(authorBtn){
+      var info = authorBtn.getAttribute('data-author').split('|');
+      openModal('<h3>' + info[0] + '</h3><p>' + info[1] + '</p><p>点击关注后，该创作者的新作品会在创作中心第一时间提醒你。</p><button class="nc-btn nc-btn--mint" type="button" id="ncFollow">关注创作者</button>');
+      setTimeout(function(){
+        var f = document.getElementById('ncFollow');
+        if(f) f.addEventListener('click', function(){ closeModal(); toast('已关注，后续作品将优先推荐'); });
+      }, 30);
+      return;
+    }
+    var rankTab = e.target.closest('[data-rank]');
+    if(rankTab){
+      var tabs = rankTab.parentNode.querySelectorAll('[data-rank]');
+      for(var i=0;i<tabs.length;i++){ tabs[i].classList.remove('active'); tabs[i].setAttribute('aria-selected','false'); }
+      rankTab.classList.add('active');
+      rankTab.setAttribute('aria-selected','true');
+      var list = document.getElementById('ncRankList');
+      var type = rankTab.getAttribute('data-rank');
+      var data = {
+        hot: [['退婚后我成了资本局操盘手','126.8 万'],['加班到九点·会议室黑话版','98.4 万'],['雨夜天台魔改版','87.1 万'],['长安三更·卷宗式重排','76.5 万'],['市井版豪门恩怨','64.2 万'],['只留环境音的声音实验','58.9 万']],
+        new: [['青春线·未删告白重剪','32.6 万'],['菜市场里的董事会','28.9 万'],['天台长镜头补录版','24.1 万'],['夜市里的和谈','19.8 万'],['声音棚新人合辑·第 2 期','17.2 万'],['三人对坐一场戏','13.5 万']],
+        rate: [['雨夜天台魔改版','9.6 分'],['长安三更·卷宗式重排','9.4 分'],['退婚后我成了资本局操盘手','9.4 分'],['只留环境音的声音实验','9.2 分'],['加班到九点·会议室黑话版','9.1 分'],['市井版豪门恩怨','8.9 分']]
+      }[type];
+      var html = '';
+      for(var j=0;j<data.length;j++){
+        html += '<div class="nc-rank__row"><span class="nc-rank__no">' + (j+1) + '</span><span class="nc-rank__name">' + data[j][0] + '</span><span class="nc-rank__heat">' + data[j][1] + '</span></div>';
+      }
+      if(list) list.innerHTML = html;
+      return;
+    }
+  });
+
+  /* 弹窗 */
+  var modal = document.getElementById('ncModal');
+  var modalBody = document.getElementById('ncModalBody');
+  function openModal(html){
+    modalBody.innerHTML = html;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('ncModalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById('ncTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 620){ topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
+  }, {passive:true});
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  /* 数字滚动 */
+  var counters = document.querySelectorAll('[data-count]');
+  var done = false;
+  function runCount(){
+    if(done) return;
+    done = true;
+    counters.forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'),10);
+      var suffix = el.querySelector('i') ? el.querySelector('i').outerHTML : '';
+      var start = performance.now();
+      var dur = 1200;
+      function step(now){
+        var p = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(target * eased);
+        var txt = target >= 1000 ? val.toLocaleString('en-US') : String(val);
+        el.innerHTML = txt + suffix;
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ runCount(); io.disconnect(); } });
+    }, {threshold:.3});
+    var heroStats = document.querySelector('.nc-hero__stats');
+    if(heroStats) io.observe(heroStats);
+  }else{
+    runCount();
+  }
+})();
+</script>
+</body>
+  </html>
